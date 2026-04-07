@@ -5,113 +5,196 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahmad Al-khasawneh | Portfolio</title>
 <style>
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0d1117;
-    color: #c9d1d9;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-header {
-    text-align: center;
-    padding: 4rem 2rem;
-    background-color: #161b22;
-    border-bottom: 1px solid #30363d;
-}
-.profile-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #58a6ff;
-    margin-bottom: 1rem;
-}
-h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    color: #ffffff;
-}
-h2 {
-    color: #58a6ff;
-    font-weight: 300;
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-}
-.social-links {
-    margin-top: 1.5rem;
-}
-.social-links a {
-    margin: 0 10px;
-    color: #c9d1d9;
-    text-decoration: none;
-    font-weight: 600;
-    border: 1px solid #30363d;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-}
-.social-links a:hover {
-    background-color: #30363d;
-    color: #ffffff;
-}
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 2rem;
-}
-section {
-    margin-bottom: 4rem;
-}
-h3 {
-    font-size: 1.8rem;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 0.5rem;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-}
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-.card {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: transform 0.2s;
-}
-.card:hover {
-    transform: translateY(-4px);
-    border-color: #58a6ff;
-}
-.card h4 {
-    margin-top: 0;
-    color: #58a6ff;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-}
-.tag-container {
-    margin-top: 1rem;
-}
-.tag {
-    display: inline-block;
-    background-color: #21262d;
-    color: #8b949e;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-.highlight {
-    color: #58a6ff;
-    font-weight: bold;
-}
-ul {
-    padding-left: 1.2rem;
-}
+    :root {
+        --neon-yellow: #f0db4f;
+        --dark-bg: #050505;
+        --card-bg: #0f0f0f;
+        --text-gray: #a0a0a0;
+        --border-color: #1a1a1a;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        background-color: var(--dark-bg);
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    /* Subtle Scanline Effect */
+    body::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 9999;
+        background-size: 100% 4px, 3px 100%;
+        pointer-events: none;
+    }
+
+    header {
+        text-align: center;
+        padding: 6rem 2rem;
+        background: radial-gradient(circle at center, #1a1a00 0%, var(--dark-bg) 70%);
+        border-bottom: 2px solid var(--neon-yellow);
+        box-shadow: 0 0 20px rgba(240, 219, 79, 0.1);
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 12px; /* Square with slight round for a tech look */
+        object-fit: cover;
+        border: 2px solid var(--neon-yellow);
+        filter: grayscale(100%) contrast(120%);
+        transition: 0.3s ease;
+        box-shadow: 0 0 15px rgba(240, 219, 79, 0.3);
+    }
+
+    .profile-img:hover {
+        filter: grayscale(0%);
+        box-shadow: 0 0 25px rgba(240, 219, 79, 0.6);
+    }
+
+    h1 {
+        margin: 1.5rem 0 0.5rem;
+        font-size: 3rem;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        color: var(--neon-yellow);
+        font-weight: 400;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .social-links {
+        margin-top: 2rem;
+    }
+
+    .social-links a {
+        margin: 0 8px;
+        color: var(--neon-yellow);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        border: 1px solid var(--neon-yellow);
+        padding: 0.6rem 1.2rem;
+        text-transform: uppercase;
+        transition: 0.2s;
+    }
+
+    .social-links a:hover {
+        background-color: var(--neon-yellow);
+        color: var(--dark-bg);
+        box-shadow: 0 0 15px var(--neon-yellow);
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 4rem 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        color: var(--neon-yellow);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    h3::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border-color);
+        margin-left: 20px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-left: 3px solid #333;
+        padding: 2rem;
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        border-left: 3px solid var(--neon-yellow);
+        background-color: #111;
+        transform: translateX(5px);
+    }
+
+    .card h4 {
+        margin-top: 0;
+        color: #fff;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .tag-container {
+        margin-top: 1.5rem;
+    }
+
+    .tag {
+        display: inline-block;
+        border: 1px solid #333;
+        color: var(--text-gray);
+        padding: 0.2rem 0.7rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        margin-right: 0.5rem;
+        letter-spacing: 1px;
+    }
+
+    .card:hover .tag {
+        border-color: var(--neon-yellow);
+        color: var(--neon-yellow);
+    }
+
+    .achievement-card {
+        background: linear-gradient(45deg, #0f0f0f, #1a1a00);
+        border: 1px solid var(--neon-yellow);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--neon-yellow);
+    }
+
+    strong {
+        color: var(--neon-yellow);
+    }
+
 </style>
 </head>
 <body>
@@ -119,7 +202,7 @@ ul {
 <header>
     <img src="image_5f23c5.jpg" alt="Ahmad Al-khasawneh" class="profile-img">
     <h1>Ahmad Al-khasawneh</h1>
-    <h2>Computer Science Student | Software Engineer | AI & Systems Programming</h2>
+    <h2>Computer Science Student // Systems Engineer // 42 Amman</h2>
     
     <div class="social-links">
         <a href="https://github.com/man-Yocto" target="_blank">GitHub</a>
@@ -130,62 +213,60 @@ ul {
 
 <div class="container">
     <section>
-        <h3>About Me</h3>
-        <p>I’m a Computer Science student at Amman Arab University and a learner at 42 Amman, passionate about building real-world software systems and AI-driven solutions.</p>
-        <p>I enjoy working close to the core of systems — understanding how things work under the hood — from UNIX processes and memory management to scalable backend logic. I don’t just write code; I analyze behavior, optimize workflows, and design systems that evolve with users. My projects focus on <strong>real execution, not just theory</strong>.</p>
+        <h3>About_Me</h3>
+        <p>I am a developer focused on <strong>low-level systems</strong> and <strong>AI architecture</strong>. Currently navigating the rigorous curriculum of 42 Amman and Amman Arab University.</p>
+        <p>My work sits at the intersection of performance and logic—specializing in UNIX environments, memory management, and adaptive AI systems. I build software that executes with precision.</p>
     </section>
 
     <section>
-        <h3>Key Achievements</h3>
-        <div class="card">
-            <h4>🏆 First Place Winner – RoboCraft Competition</h4>
-            <p>Built <strong>CodeForces Coach</strong>, an AI-powered Competitive Programming platform that dynamically adapts learning paths based on user behavior, hesitation time, and error patterns. It moves beyond static roadmaps to provide real-time, adaptive technical coaching.</p>
+        <h3>Core_Wins</h3>
+        <div class="card achievement-card">
+            <h4>🏆 Winner: RoboCraft Competition</h4>
+            <p>Developed <strong>CodeForces Coach</strong>: An adaptive AI platform that analyzes developer error patterns and hesitation metrics to generate personalized algorithmic training paths.</p>
         </div>
     </section>
 
     <section>
-        <h3>Featured Projects</h3>
+        <h3>System_Projects</h3>
         <div class="card-grid">
-            
             <div class="card">
                 <h4>Minishell</h4>
-                <p>Built a minimal UNIX shell from scratch. Replicated real shell behavior handling tokenization, child processes via <code>fork</code> and <code>execve</code>, pipes, file redirections, and environment variable management.</p>
+                <p>A complete implementation of a UNIX command-line interpreter. Features complex process handling, pipes, and signal management.</p>
                 <div class="tag-container">
                     <span class="tag">C</span>
-                    <span class="tag">Systems Programming</span>
-                    <span class="tag">UNIX</span>
+                    <span class="tag">POSIX</span>
+                    <span class="tag">Kernel Ops</span>
                 </div>
             </div>
 
             <div class="card">
                 <h4>cub3d</h4>
-                <p>A 3D raycasting engine mimicking early 90s graphical frameworks, engineered with custom high-resolution textures, complex environmental lighting configurations, and door animation systems.</p>
+                <p>Performance-optimized 3D raycasting engine. Implements custom texture mapping and dynamic lighting within a C environment.</p>
                 <div class="tag-container">
+                    <span class="tag">Graphics</span>
+                    <span class="tag">Algorithms</span>
                     <span class="tag">C</span>
-                    <span class="tag">Math & Raycasting</span>
-                    <span class="tag">Game Architecture</span>
                 </div>
             </div>
 
             <div class="card">
                 <h4>pipex</h4>
-                <p>Systems-level program recreating the Unix pipe operator behavior. Handled process creation and inter-process communication using system calls like <code>pipe()</code>, <code>fork()</code>, and <code>dup2()</code>.</p>
+                <p>Re-engineering the shell pipe mechanism. Deep dive into file descriptors and inter-process communication.</p>
                 <div class="tag-container">
-                    <span class="tag">C</span>
                     <span class="tag">IPC</span>
-                    <span class="tag">System Calls</span>
+                    <span class="tag">Systems</span>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section>
-        <h3>Technical Focus</h3>
+        <h3>Tech_Stack</h3>
         <ul>
-            <li><strong>Software Engineering:</strong> C / C++ / C# / Java / Systems Programming</li>
-            <li><strong>Frontend & UI/UX:</strong> React TypeScript / Tailwind / Interface Optimization</li>
-            <li><strong>Core Competencies:</strong> AI-powered platforms, Competitive Programming, Problem-solving & algorithmic thinking</li>
+            <li><strong>Low Level:</strong> C, C++, Systems Programming (UNIX/Linux)</li>
+            <li><strong>Backend:</strong> Java, C#, SQL, PHP</li>
+            <li><strong>Frontend:</strong> React, TypeScript, Tailwind CSS</li>
+            <li><strong>Specialized:</strong> Competitive Programming, AI Logic Architecture</li>
         </ul>
     </section>
 </div>
