@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmad Al-khasawneh | Portfolio</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #58a6ff;
+    margin-bottom: 1rem;
+}
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+h2 {
+    color: #58a6ff;
+    font-weight: 300;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+.social-links {
+    margin-top: 1.5rem;
+}
+.social-links a {
+    margin: 0 10px;
+    color: #c9d1d9;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #30363d;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+.social-links a:hover {
+    background-color: #30363d;
+    color: #ffffff;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+}
+section {
+    margin-bottom: 4rem;
+}
+h3 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 0.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #58a6ff;
+}
+.card h4 {
+    margin-top: 0;
+    color: #58a6ff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.tag-container {
+    margin-top: 1rem;
+}
+.tag {
+    display: inline-block;
+    background-color: #21262d;
+    color: #8b949e;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.highlight {
+    color: #58a6ff;
+    font-weight: bold;
+}
+ul {
+    padding-left: 1.2rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <img src="image_5f23c5.jpg" alt="Ahmad Al-khasawneh" class="profile-img">
+    <h1>Ahmad Al-khasawneh</h1>
+    <h2>Computer Science Student | Software Engineer | AI & Systems Programming</h2>
+    
+    <div class="social-links">
+        <a href="https://github.com/man-Yocto" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/ahmad-al-khasawneh-934a57341" target="_blank">LinkedIn</a>
+        <a href="https://linktr.ee/Ahmad_en" target="_blank">Linktree</a>
+    </div>
+</header>
+
+<div class="container">
+    <section>
+        <h3>About Me</h3>
+        <p>I’m a Computer Science student at Amman Arab University and a learner at 42 Amman, passionate about building real-world software systems and AI-driven solutions.</p>
+        <p>I enjoy working close to the core of systems — understanding how things work under the hood — from UNIX processes and memory management to scalable backend logic. I don’t just write code; I analyze behavior, optimize workflows, and design systems that evolve with users. My projects focus on <strong>real execution, not just theory</strong>.</p>
+    </section>
+
+    <section>
+        <h3>Key Achievements</h3>
+        <div class="card">
+            <h4>🏆 First Place Winner – RoboCraft Competition</h4>
+            <p>Built <strong>CodeForces Coach</strong>, an AI-powered Competitive Programming platform that dynamically adapts learning paths based on user behavior, hesitation time, and error patterns. It moves beyond static roadmaps to provide real-time, adaptive technical coaching.</p>
+        </div>
+    </section>
+
+    <section>
+        <h3>Featured Projects</h3>
+        <div class="card-grid">
+            
+            <div class="card">
+                <h4>Minishell</h4>
+                <p>Built a minimal UNIX shell from scratch. Replicated real shell behavior handling tokenization, child processes via <code>fork</code> and <code>execve</code>, pipes, file redirections, and environment variable management.</p>
+                <div class="tag-container">
+                    <span class="tag">C</span>
+                    <span class="tag">Systems Programming</span>
+                    <span class="tag">UNIX</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>cub3d</h4>
+                <p>A 3D raycasting engine mimicking early 90s graphical frameworks, engineered with custom high-resolution textures, complex environmental lighting configurations, and door animation systems.</p>
+                <div class="tag-container">
+                    <span class="tag">C</span>
+                    <span class="tag">Math & Raycasting</span>
+                    <span class="tag">Game Architecture</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>pipex</h4>
+                <p>Systems-level program recreating the Unix pipe operator behavior. Handled process creation and inter-process communication using system calls like <code>pipe()</code>, <code>fork()</code>, and <code>dup2()</code>.</p>
+                <div class="tag-container">
+                    <span class="tag">C</span>
+                    <span class="tag">IPC</span>
+                    <span class="tag">System Calls</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <h3>Technical Focus</h3>
+        <ul>
+            <li><strong>Software Engineering:</strong> C / C++ / C# / Java / Systems Programming</li>
+            <li><strong>Frontend & UI/UX:</strong> React TypeScript / Tailwind / Interface Optimization</li>
+            <li><strong>Core Competencies:</strong> AI-powered platforms, Competitive Programming, Problem-solving & algorithmic thinking</li>
+        </ul>
+    </section>
+</div>
+
+</body>
+</html>
