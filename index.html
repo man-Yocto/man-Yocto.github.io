@@ -1,0 +1,464 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ahmad Al-Khasawneh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0b0d0e;
+    --bg-raised:#111414;
+    --line:#24282a;
+    --line-soft:#1a1d1e;
+    --text:#e8e4dc;
+    --text-dim:#8b9296;
+    --text-faint:#565c5e;
+    --amber:#ff9d2e;
+    --amber-dim:#a85f10;
+    --green:#7ec699;
+    --mono:'JetBrains Mono',monospace;
+    --sans:'Inter',sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);font-family:var(--sans);
+    font-size:16px;line-height:1.6;
+  }
+  ::selection{background:var(--amber);color:var(--bg)}
+  a{color:inherit}
+
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+
+  /* top bar — like a terminal title bar */
+  .bar{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-raised);
+  }
+  .bar-inner{
+    max-width:860px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .bar-path{
+    font-family:var(--mono);font-size:13px;color:var(--text-dim);
+    display:flex;align-items:center;gap:8px;
+  }
+  .bar-dots{display:flex;gap:6px}
+  .bar-dots span{width:9px;height:9px;border-radius:50%;background:var(--line)}
+  .bar-nav{display:flex;gap:22px;font-family:var(--mono);font-size:13px}
+  .bar-nav a{color:var(--text-dim);text-decoration:none}
+  .bar-nav a:hover{color:var(--amber)}
+
+  /* hero */
+  .hero{padding:64px 0 56px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+  .hero-photo{
+    width:140px;height:140px;border:1px solid var(--line);border-radius:4px;
+    overflow:hidden;background:var(--bg-raised);flex-shrink:0;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.15)}
+  @media(max-width:640px){
+    .hero-grid{grid-template-columns:1fr;gap:24px}
+    .hero-photo{width:96px;height:96px;order:-1}
+  }
+  .hero-tag{
+    font-family:var(--mono);font-size:13px;color:var(--green);
+    margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .hero-tag .blip{width:7px;height:7px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 8px var(--green);flex-shrink:0}
+  h1{
+    font-family:var(--mono);font-weight:700;
+    font-size:clamp(1.9rem,4.2vw,2.9rem);letter-spacing:-.01em;
+    color:var(--text);margin-bottom:10px;line-height:1.2;
+  }
+  .hero-role{
+    font-family:var(--sans);font-size:1.05rem;color:var(--text-dim);
+    margin-bottom:26px;max-width:560px;
+  }
+  .hero-desc{
+    font-size:1rem;color:var(--text-dim);max-width:600px;line-height:1.85;
+    margin-bottom:30px;
+  }
+  .hero-desc strong{color:var(--text);font-weight:600}
+  .hero-links{display:flex;gap:12px;flex-wrap:wrap}
+  .link-btn{
+    font-family:var(--mono);font-size:13px;
+    padding:9px 16px;border:1px solid var(--line);border-radius:3px;
+    text-decoration:none;color:var(--text);transition:border-color .15s,color .15s;
+  }
+  .link-btn:hover{border-color:var(--amber);color:var(--amber)}
+  .link-btn.primary{background:var(--amber);border-color:var(--amber);color:var(--bg);font-weight:600}
+  .link-btn.primary:hover{background:transparent;color:var(--amber)}
+
+  /* section shell */
+  section{padding:52px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  .sec-head{margin-bottom:32px}
+  .sec-num{
+    font-family:var(--mono);font-size:13px;color:var(--text-faint);
+    margin-bottom:6px;
+  }
+  h2{
+    font-family:var(--mono);font-weight:700;font-size:1.5rem;
+    color:var(--text);
+  }
+  .sec-sub{color:var(--text-dim);font-size:.95rem;margin-top:8px;max-width:480px}
+
+  /* project list — dense rows, not cards-with-shadows */
+  .proj{
+    padding:22px 0;border-top:1px solid var(--line-soft);
+    display:grid;grid-template-columns:200px 1fr;gap:24px;
+  }
+  .proj:first-of-type{border-top:none;padding-top:0}
+  .proj-meta{font-family:var(--mono)}
+  .proj-name{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:6px}
+  .proj-badge{
+    display:inline-block;font-size:11px;color:var(--text-faint);
+    border:1px solid var(--line);padding:2px 7px;border-radius:2px;margin-bottom:4px;
+  }
+  .proj-award{
+    display:inline-block;font-size:11px;color:var(--amber);
+    border:1px solid var(--amber-dim);padding:2px 7px;border-radius:2px;margin-top:6px;
+  }
+  .proj-body{font-size:.95rem;color:var(--text-dim);line-height:1.75}
+  .proj-tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+  .proj-tags span{
+    font-family:var(--mono);font-size:11px;color:var(--text-faint);
+    border:1px solid var(--line-soft);padding:2px 8px;border-radius:2px;
+  }
+  @media(max-width:640px){
+    .proj{grid-template-columns:1fr;gap:8px}
+  }
+
+  /* skills — plain rows, no icon-card grid */
+  .skill-row{
+    display:grid;grid-template-columns:220px 1fr;gap:24px;
+    padding:16px 0;border-top:1px solid var(--line-soft);
+  }
+  .skill-row:first-of-type{border-top:none}
+  .skill-name{font-family:var(--mono);font-weight:600;font-size:.95rem;color:var(--text)}
+  .skill-desc{font-size:.92rem;color:var(--text-dim)}
+  @media(max-width:640px){.skill-row{grid-template-columns:1fr;gap:4px}}
+
+  /* timeline */
+  .tl{position:relative}
+  .tl-item{
+    display:grid;grid-template-columns:130px 1fr;gap:24px;
+    padding:18px 0;border-top:1px solid var(--line-soft);
+  }
+  .tl-item:first-of-type{border-top:none}
+  .tl-date{font-family:var(--mono);font-size:12px;color:var(--amber);padding-top:2px}
+  .tl-title{font-weight:600;color:var(--text);margin-bottom:4px}
+  .tl-org{font-size:.85rem;color:var(--text-faint);margin-bottom:8px;font-family:var(--mono)}
+  .tl-desc{font-size:.92rem;color:var(--text-dim);line-height:1.7}
+  @media(max-width:640px){.tl-item{grid-template-columns:1fr;gap:4px}}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .c-list a{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:13px 0;border-top:1px solid var(--line-soft);
+    text-decoration:none;font-size:.95rem;
+  }
+  .c-list a:first-of-type{border-top:none}
+  .c-label{font-family:var(--mono);font-size:12px;color:var(--text-faint)}
+  .c-val{color:var(--text)}
+  .c-list a:hover .c-val{color:var(--amber)}
+
+  .open-box{border:1px solid var(--line);border-radius:4px;padding:22px;background:var(--bg-raised)}
+  .open-title{font-family:var(--mono);font-size:12px;color:var(--text-faint);margin-bottom:14px}
+  .open-item{
+    padding:9px 0;border-top:1px solid var(--line-soft);font-size:.93rem;color:var(--text-dim);
+    display:flex;gap:10px;align-items:baseline;
+  }
+  .open-item:first-of-type{border-top:none}
+  .open-item::before{content:'›';color:var(--amber);font-family:var(--mono)}
+
+  @media(max-width:640px){.contact-grid{grid-template-columns:1fr;gap:24px}}
+
+  footer{padding:28px 0;text-align:center}
+  .footer-txt{font-family:var(--mono);font-size:12px;color:var(--text-faint)}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="bar-path">
+      <div class="bar-dots"><span></span><span></span><span></span></div>
+      ahmad@amman:~$ whoami
+    </div>
+    <nav class="bar-nav">
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#journey">journey</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag"><span class="blip"></span>Amman, Jordan — open to work</div>
+        <h1>Ahmad Al-Khasawneh</h1>
+        <div class="hero-role">Software Engineer — Systems &amp; Backend</div>
+        <p class="hero-desc">
+          CS student at Amman Arab University and learner at 42 Amman. I spend most of my time
+          close to the metal — process management, memory, file descriptors in C — and the rest
+          building backend systems that hold up under real constraints. <strong>3.96 GPA</strong>,
+          competitive programmer, and currently working toward embedded/edge AI as a long-term
+          specialization.
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/man-Yocto" target="_blank" class="link-btn primary">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/ahmad-al-khasawneh-934a57341" target="_blank" class="link-btn">LinkedIn</a>
+          <a href="https://linktr.ee/Ahmad_en" target="_blank" class="link-btn">Linktree</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="image.png" alt="Ahmad Al-Khasawneh"/>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2>Things I've built</h2>
+      <p class="sec-sub">42 School projects, competition entries, and university work — in roughly the order they got harder.</p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">CodeForces Coach</div>
+        <div class="proj-badge">AI PLATFORM</div>
+        <div class="proj-award">🏆 1st place — RoboCraft</div>
+      </div>
+      <div class="proj-body">
+        AI-powered competitive programming platform with per-user learning roadmaps that
+        actually change over time — driven by writing behavior, hesitation time, error
+        patterns, and performance history rather than a fixed curriculum. Includes
+        progressive hint coaching, cheat detection, gamification, and live Codeforces
+        integration.
+        <div class="proj-tags"><span>Behavior analysis</span><span>Adaptive learning</span><span>Codeforces API</span><span>Gamification</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">Minishell</div>
+        <div class="proj-badge">42 AMMAN</div>
+      </div>
+      <div class="proj-body">
+        A minimal UNIX shell rebuilt from zero in C: tokenization, quote handling, pipes,
+        all redirections, environment variable expansion, signal handling, and built-ins.
+        <div class="proj-tags"><span>C</span><span>fork/execve</span><span>File descriptors</span><span>Signals</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">Webserv</div>
+        <div class="proj-badge">42 AMMAN</div>
+      </div>
+      <div class="proj-body">
+        HTTP server in C++: request parsing, CGI execution, an epoll event loop, upload
+        handling, and HTTP/1.0-scope RFC compliance. Fixed an O(n²) bottleneck and
+        concurrent-upload collisions before final peer evaluation. Built with a teammate,
+        <a href="#" style="color:var(--text-dim);text-decoration:underline">Malak</a>.
+        <div class="proj-tags"><span>C++</span><span>epoll</span><span>CGI</span><span>Performance tuning</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">ft_printf</div>
+        <div class="proj-badge">42 AMMAN</div>
+      </div>
+      <div class="proj-body">
+        Full reimplementation of C's printf from scratch — variadic arguments, every format
+        specifier, precision, and edge cases. Matches the original byte for byte.
+        <div class="proj-tags"><span>C</span><span>Variadic args</span><span>Format parsing</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">push_swap</div>
+        <div class="proj-badge">42 AMMAN</div>
+      </div>
+      <div class="proj-body">
+        Sorting algorithm across two stacks, optimized for minimum operation count —
+        algorithmic design and complexity trade-offs under a tight constraint.
+        <div class="proj-tags"><span>C</span><span>Algorithms</span><span>Stack ops</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">so_long</div>
+        <div class="proj-badge">42 AMMAN</div>
+      </div>
+      <div class="proj-body">
+        2D game built in C on MLX42, with no engine: map parsing, collision detection,
+        sprite rendering, and the full event loop by hand.
+        <div class="proj-tags"><span>C</span><span>MLX42</span><span>Graphics</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">SkillSync</div>
+        <div class="proj-badge">AAU · NTP 13</div>
+      </div>
+      <div class="proj-body">
+        AI-powered collaborative learning platform built with a 5-person team: React + Vite
+        frontend, Node.js backend, PostgreSQL, Claude API, and Socket.io for realtime features.
+        <div class="proj-tags"><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Socket.io</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-meta">
+        <div class="proj-name">ft_transcendence</div>
+        <div class="proj-badge">42 AMMAN · IN PROGRESS</div>
+      </div>
+      <div class="proj-body">
+        Rebuilding SkillSync's concept with a new 5-person team as a collaborative group
+        workspace — task boards, group chat with file/image/location sharing, and an AI
+        assistant grounded in each group's own shared files via RAG. I own the entire Spring
+        Boot backend: WebSocket, OAuth2, JWT, Spring Security, RBAC, and JPA.
+        <div class="proj-tags"><span>Spring Boot</span><span>WebSocket</span><span>OAuth2/JWT</span><span>RBAC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <h2>What I know</h2>
+      <p class="sec-sub">From memory management up to AI-driven systems.</p>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-name">Systems programming</div>
+      <div class="skill-desc">C and C++, UNIX process models, memory management, IPC, file descriptors, Makefiles. I care about what's happening under the abstraction.</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-name">Backend &amp; Spring Boot</div>
+      <div class="skill-desc">WebSocket, OAuth2/JWT, Spring Security, RBAC, and JPA — the stack I own on ft_transcendence.</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-name">Competitive programming</div>
+      <div class="skill-desc">Active on Codeforces and LeetCode. Ranked 5th of 155 in a Ramadan CP marathon. Working toward interview-ready strength for Google/Amazon-tier interviews.</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-name">AI &amp; adaptive systems</div>
+      <div class="skill-desc">Platforms that adapt to user behavior at runtime instead of following a static script — the core idea behind CodeForces Coach.</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-name">Tools &amp; environment</div>
+      <div class="skill-desc">Linux daily driver, Git, shell scripting, Docker (built a full NGINX/WordPress/MariaDB stack from a cold start), light Kali Linux familiarity.</div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2>Experience &amp; education</h2>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">2024 — present</div>
+        <div>
+          <div class="tl-title">Learner at 42 Amman</div>
+          <div class="tl-org">Peer-to-peer, project-based</div>
+          <p class="tl-desc">Milestones 0 through 5 complete: ft_printf, get_next_line, pipex, push_swap, so_long, cub3D, Webserv, and Minishell — plus C++ Modules through advanced STL. No lectures, no shortcuts.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div>
+          <div class="tl-title">1st place — RoboCraft Competition</div>
+          <div class="tl-org">CodeForces Coach</div>
+          <p class="tl-desc">Led the build of an AI platform that adapts CP learning roadmaps per user based on behavioral analysis.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div>
+          <div class="tl-title">5th of 155 — Ramadan CP Marathon</div>
+          <div class="tl-org">Al-3ahed Technology</div>
+          <p class="tl-desc">Held up under real time pressure against 155 competitors.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023 — present</div>
+        <div>
+          <div class="tl-title">CS student, Amman Arab University</div>
+          <div class="tl-org">Expected graduation: Feb 2028</div>
+          <p class="tl-desc">3.96 GPA. ICPC participant. Coursework spans algorithms, databases (ER/EER modeling, SQL, normalization through 3NF), and software engineering.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div>
+          <div class="tl-title">Petra 11 — Quantum Computing Conference</div>
+          <div class="tl-org">Attendee</div>
+          <p class="tl-desc">Sessions on quantum physics and the future of computing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2>Let's connect</h2>
+      <p class="sec-sub">Open to engineering roles, internships, and collaborative builds.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c-list">
+        <a href="mailto:alkhasawneha56@gmail.com">
+          <span class="c-label">EMAIL</span><span class="c-val">alkhasawneha56@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ahmad-al-khasawneh-934a57341" target="_blank">
+          <span class="c-label">LINKEDIN</span><span class="c-val">ahmad-al-khasawneh</span>
+        </a>
+        <a href="https://github.com/man-Yocto" target="_blank">
+          <span class="c-label">GITHUB</span><span class="c-val">man-Yocto</span>
+        </a>
+        <a href="https://linktr.ee/Ahmad_en" target="_blank">
+          <span class="c-label">LINKTREE</span><span class="c-val">linktr.ee/Ahmad_en</span>
+        </a>
+      </div>
+      <div class="open-box">
+        <div class="open-title">OPEN TO</div>
+        <div class="open-item">Software Engineer (junior / intern)</div>
+        <div class="open-item">Systems Developer, C/C++</div>
+        <div class="open-item">Backend Engineer, Spring Boot</div>
+        <div class="open-item">AI implementation &amp; strategy</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-txt">ahmad al-khasawneh — amman, jordan</div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
